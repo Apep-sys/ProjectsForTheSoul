@@ -17,7 +17,12 @@ def hand_ranking(mana_carti, table_cards, i):
                 high_Card]
 
     # Initializam lista de counter pentru fiecare carte existenta in mana
-    counter_perechi = {x : 0 for x in mana_carti}
+    chei_duble = list(mana_carti.keys())
+    chei_duble = [x[0] for x in chei_duble]
+    if chei_duble.count(chei_duble[0]) == 2:
+        counter_perechi = {x: 2 for x in mana_carti}
+    else:
+        counter_perechi = {x: 0 for x in mana_carti}
 
     # Verificam daca se potrivesc valorile cartilor
     for x in mana_carti.keys():
@@ -86,10 +91,12 @@ def hand_ranking(mana_carti, table_cards, i):
         pair = 2
     elif list(counter_perechi.values()).count(2) == 1:
         pair = 3
-    elif list(counter_perechi.values()).count(3) == 1:
+    elif list(counter_perechi.values()).count(4) == 2:
         pair = 4
     else:
         pair = 1
+    print(list(counter_perechi.values()).count(list(counter_perechi.values())[0]))
+    print(list(counter_perechi.values()))
     if pair == 1:
         print(f'Aveti o pereche! {i, mana_carti}')
     if pair == 2:
@@ -119,9 +126,9 @@ def hand_ranking(mana_carti, table_cards, i):
         print(f'Aveti un Full House! {i, mana_carti}')
 
 
-pair = {'3':'mama', '2':'tata'}
+pair = {'3':'mama', '32':'tata'}
 flush = {'da':'nu', 'yoo':'nu', 'ma':'nu', 'ra':'nu', 'si':'nu'}
 straight = {'4':'a', '5':'nu', '6':'yas', '8':'s'}
-pair1 = {'2':'mama', '21':'tata'}
+pair1 = {'3':'mama', '31':'tata'}
 royal = {'A':'as','Q':'as','K':'as','J':'as','B':'as'}
 hand_ranking(pair, pair1, 'da')
